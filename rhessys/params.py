@@ -728,12 +728,15 @@ class paramDB:
             @param reference reference string to search for
             @param limitToBaseClasses only select base classes
 
+            @return True if one or more parameters were found, False otherwise
+
             @raise RuntimeError if an invalid search type specified
             
         """
 
         self.searchResultType = "param"
 
+        self.params = None
         if (searchType == rpc.SEARCH_TYPE_HIERARCHICAL):
             self.params = self.searchHierarchical(classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses)
         elif (searchType == rpc.SEARCH_TYPE_CONSTRAINED):
@@ -741,6 +744,11 @@ class paramDB:
         else:
             msg = "Unknown search type %s" % searchType
             raise RuntimeError, msg
+        
+        if self.params and len(self.params) > 0:
+            return True
+        return False
+     
 
     def searchClass(self, classId, classType, className, location, genus, species):
         """ @brief Write parameters for each class in previous search result to a separate .def file
