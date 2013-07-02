@@ -679,7 +679,7 @@ class paramDB:
 
         return finalParams
 
-    def searchConstrained(self, classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses=False):
+    def searchConstrained(self, classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses=False, defaultIdOverride=None):
 
         self.searchResultType = "param"
 
@@ -699,11 +699,29 @@ class paramDB:
         finalParams = fetchParams(self.conn, className, classType, location, param, genus, species, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses)
         if (className != None):
 
+            # Overwrite/set default ID parameter in fetched params
+            found = False
+            if defaultIdOverride:
+                defId = defaultIdOverride
+            else:
+                defId = self.requestedClassDefaultId
+            idStr = rpc.DEFAULT_ID_STR[self.requestedClassType]
+            defIdParam = (self.requestedClassId, idStr, defId, 
+                              time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), '', '','RHESSys')
+            for idx, param in enumerate(finalParams):
+                if param[rpc.PARAM_IND['name']] == idStr:
+                    found = True
+                    break
+            if found:
+                finalParams[idx] = defIdParam
+            else:
+                finalParams.append(defIdParam)
+
             finalClass = fetchClass(self.conn, None, None, className, location, None, None)[0]
             finalClassId = finalClass[rpc.TYPE_JOIN_CLASS_IND['class_id']]
 
             if (finalClassId not in self.classes):
-               self.classes[finalClassId] = finalClass
+                self.classes[finalClassId] = finalClass
 
         #if (self.requestedClassId != None):
         #    currentDatetimeStr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -711,7 +729,7 @@ class paramDB:
 
         return finalParams
 
-    def search(self, searchType, classType, className, location, param, genus, species, startDatetimeStr, endDatetimeStr, user, reference, limitToBaseClasses=False):
+    def search(self, searchType, classType, className, location, param, genus, species, startDatetimeStr, endDatetimeStr, user, reference, limitToBaseClasses=False, defaultIdOverride=None):
         """ @brief Search the parameter database for entries that match the specified search criteria.
         
             @param outputPath Directory where parameter files should be written 
@@ -727,6 +745,9 @@ class paramDB:
             @param user user name to search for
             @param reference reference string to search for
             @param limitToBaseClasses only select base classes
+            @param defaultIdOverride Id to replace default ID with.  
+                Will only have effect for constrained searches where 
+                className parameter is also supplied.
 
             @return True if one or more parameters were found, False otherwise
 
@@ -740,7 +761,7 @@ class paramDB:
         if (searchType == rpc.SEARCH_TYPE_HIERARCHICAL):
             self.params = self.searchHierarchical(classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses)
         elif (searchType == rpc.SEARCH_TYPE_CONSTRAINED):
-            self.params = self.searchConstrained(classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses)
+            self.params = self.searchConstrained(classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses, defaultIdOverride)
         else:
             msg = "Unknown search type %s" % searchType
             raise RuntimeError, msg

@@ -4,6 +4,15 @@ VALID_FORMATS = ('csv', 'param')
 OUTPUT_FORMAT_CSV = 'csv'
 OUTPUT_FORMAT_PARAM = 'param'
 
+DEFAULT_ID_STR = {'basin': 'basin_default_ID',
+                  'fire': 'fire_default_ID',
+                  'hillslope': 'hillslope_default_ID',
+                  'landuse': 'landuse_default_ID',
+                  'soil': 'patch_default_ID',
+                  'stratum': 'stratum_default_ID',
+                  'surface_energy': 'surface_energy_ID',
+                  'zone': 'zone_default_ID'}
+
 SEARCH_TYPES = ("hierarchical", "constrained")
 SEARCH_TYPE_HIERARCHICAL = SEARCH_TYPES[0]
 SEARCH_TYPE_CONSTRAINED  = SEARCH_TYPES[1]
