@@ -31,7 +31,7 @@ GRASS	   epc.veg.type
 STATIC	  epc.phenology_flag
 EVERGREEN	  epc.phenology.type
 2.000000	  epc.max_lai
-7.000000	  epc.proj_sla
+49.000000	  epc.proj_sla
 2.000000	  epc.lai_ratio
 0.000000	  epc.proj_swa
 0.000000	  epc.leaf_turnover
@@ -66,5 +66,5 @@ dynamic	  epc.allocation_flag
 0.050000	  epc.maxlgf
 0.000000	  epc.alloc_prop_day_growth
 0.000000	  epc.daily_fire_turnover
-1.800000	  epc.height_to_stem_exp
-11.390000	  epc.height_to_stem_coef
+0.000000	  epc.height_to_stem_exp
+0.010000	  epc.height_to_stem_coef
