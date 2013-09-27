@@ -161,16 +161,18 @@ def getNextDefaultId(conn, classTypeId, className, location, parentId):
 
     # For stratum class types, a child class_id must have the parent_id prepended to it.
     done = False
+    childMaxId = 1
     while (not done):
         if (parentId == 0 or parentId == None):
             defaultId = str(classTypeMaxId)
         else:
-            defaultId = str(parentDefaultId) + str(classTypeMaxId)
+            defaultId = str(parentDefaultId) + str(childMaxId)
    
         # Check if this defaultId has already been used for this class. If we had
         # many classes, this method could result in many db accesses.
         if (defaultIdExists(conn, classTypeId, defaultId)):
             classTypeMaxId += 1
+            childMaxId += 1
             done = False
         else:
             done = True
