@@ -14,6 +14,8 @@ sqlite3 unittests/empty_params.sqlite < createParamDB.sql
 ./insertParams.py -v --type="stratum" --name="evergreen" --parentName="None" --user="RHESSys" defs/stratum/veg_evergreen.def
 ./insertParams.py -v --type="stratum" --name="deciduous_BES" --parentName="deciduous" --location="Baltimore Ecosystem Study" --user="RHESSys" defs/stratum/veg_deciduous_BES.def
 ./insertParams.py -v --type="stratum" --name="lawn_10cm" --parentName="grass" --user="RHESSys" defs/stratum/veg_lawn_10cm.def
+./insertParams.py -v --type="stratum" --name="lawn_5cm" --parentName="grass" --user="RHESSys" defs/stratum/veg_lawn_5cm.def
+
 
 # Insert params for the soil base classes
 ./insertParams.py -v --type="soil" --name="clay" --parentName="None" --user="RHESSys" defs/soil/soil_clay.def

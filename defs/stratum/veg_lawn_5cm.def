@@ -1,4 +1,4 @@
-21	   stratum_default_ID
+22	   stratum_default_ID
 GRASS	   epc.veg.type
 0.650000	   K_absorptance
 0.250000	   K_reflectance
@@ -67,4 +67,4 @@ dynamic	  epc.allocation_flag
 0.000000	  epc.alloc_prop_day_growth
 0.000000	  epc.daily_fire_turnover
 0.000000	  epc.height_to_stem_exp
-0.100000	  epc.height_to_stem_coef
+0.050000	  epc.height_to_stem_coef
