@@ -483,7 +483,7 @@ def writeParams(conn, params, outputPath):
             fdOut = open(outputPath, 'w')
         except:
             msg = "Unable to open params output file %s" % outputPath
-            raise RuntimeError
+            raise RuntimeError(msg)
     else:
         fdOut = sys.stdout
 
@@ -826,8 +826,10 @@ class paramDB:
             elif (outputFormat == rpc.OUTPUT_FORMAT_PARAM):
                 writeParams(self.conn, self.params, outputPath)
 
-    def writeParamFiles(self, outputPath):
-        """ @brief Write parameters for each class in previous search result to a separate .def file
+    def writeParamFileForClass(self, outputPath):
+        """ @brief Write parameters resulting from the previous search result to a .def file.
+        
+            @note The search should have yielded parameters for a single class.
         
             @param outputPath Directory where parameter files should be written 
             
@@ -842,23 +844,40 @@ class paramDB:
     
         fdOut = None
         currClassId = None
-        cursor = self.conn.cursor()
-        for p in sorted(self.params, key=lambda param: param[rpc.PARAM_IND['class_id']]):
+        defaultId_re = re.compile( "^(\w+_default_ID)$", flags=re.IGNORECASE )
+        defaultId_key = None
+        defaultId_value = None
+        params = []
+        
+        # Iterate over parameters to find default ID
+        for p in sorted(self.params, key=lambda param: param[rpc.PARAM_IND['name']]):
             classId, name, value, dt, reference, comment, user = p
-            if classId != currClassId:
-                if fdOut: fdOut.close()
-                currClassId = classId
-                # Get class name and class type name for use in .def filename
-                cursor.execute("""select c.name, t.type_name from class as c, class_type as t where c.type_id=t.type_id and c.class_id=?""",
-                                  (classId,) )
-                result = cursor.fetchone()
-                assert(result)
-                className = result[0]
-                classType = result[1]
-                fileName = "%s_%s.def" % (classType, className)
-                filePath = os.path.join(outputPath, fileName)
-                fdOut = open(filePath, 'w')
-            fdOut.write( "%s %s %s %s%s" % (value, name, comment, reference, os.linesep) )
+            m = defaultId_re.match(name)
+            if m:
+                defaultId_key = m.group(1)
+                defaultId_value = int(value)
+                defaultId_classId = classId
+            else:
+                params.append( "%s %s %s %s%s" % (value, name, comment, reference, os.linesep) )
+
+        # Get class name and class type name for use in .def filename
+        if defaultId_key:
+            cursor = self.conn.cursor()
+            cursor.execute("""select c.name, t.type_name from class as c, class_type as t where c.type_id=t.type_id and c.class_id=?""",
+                              (defaultId_classId,) )
+            result = cursor.fetchone()
+            assert(result)
+            className = result[0]
+            classType = result[1]
+            fileName = "%s_%s.def" % (classType, className)
+            filePath = os.path.join(outputPath, fileName)
+            fdOut = open(filePath, 'w')
+            # Write default ID to file
+            fdOut.write( "%d %s %s" % (defaultId_value, defaultId_key, os.linesep) )
+        
+        # Write params to file
+        for param in params:
+            fdOut.write( param )
     
         if fdOut: fdOut.close()
 

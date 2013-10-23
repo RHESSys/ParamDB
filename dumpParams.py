@@ -60,7 +60,7 @@ parser.add_argument('--location', dest='location', required=False,
                     help='Location to search for, e.g. "Oregon"')
 parser.add_argument('--name', dest='className', required=False,
                     help='Name that can uniquely identify a set of parameters. Example class names might be "Evergreen", "sandyloam", Western Hemlock", "Ponderosa Pine, eastern Sierra"')
-parser.add_argument('-o', '--outputPath', dest='outputPath', required=False,
+parser.add_argument('-o', '--outputPath', dest='outputPath', required=True,
                     help='Directory to which class parameter files will be written')
 parser.add_argument('--param', dest='param', required=False,
                     help='Name of the parameter to search for')
@@ -86,4 +86,5 @@ if args.outputPath:
 
 DBobj = paramDB()
 DBobj.search(args.searchType, args.classType, args.className, args.location, args.param, args.genus, args.species, args.startDatetimeStr, args.endDatetimeStr, args.user, args.reference, args.limitToBaseClasses)
-DBobj.writeParamFiles(outputPath)
+DBobj.writeParamFileForClass(outputPath)
+#DBobj.write(outputPath, rpc.OUTPUT_FORMAT_PARAM)
