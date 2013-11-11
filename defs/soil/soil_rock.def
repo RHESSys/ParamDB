@@ -24,6 +24,7 @@
 0.000000 snow_water_capacity
 0.250000 soil_depth
 1 theta_psi_curve
+1.000000 sat_to_gw_coeff
 0.000000 NO3_adsorption_rate
 0.000000 theta_mean_std_p1
 0.000000 theta_mean_std_p2
