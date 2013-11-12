@@ -8,10 +8,10 @@ sqlite3 empty_params.sqlite < createParamDB.sql
 sqlite3 unittests/empty_params.sqlite < createParamDB.sql
 
 # Insert params for the veg base classes
-./insertParams.py -v --type="stratum" --name="nonveg" --parentName="None" --user="RHESSys" defs/stratum/veg_nonveg.def
-./insertParams.py -v --type="stratum" --name="grass" --parentName="None" --user="RHESSys" defs/stratum/veg_grass.def
-./insertParams.py -v --type="stratum" --name="deciduous" --parentName="None" --user="RHESSys" defs/stratum/veg_deciduous.def
 ./insertParams.py -v --type="stratum" --name="evergreen" --parentName="None" --user="RHESSys" defs/stratum/veg_evergreen.def
+./insertParams.py -v --type="stratum" --name="deciduous" --parentName="None" --user="RHESSys" defs/stratum/veg_deciduous.def
+./insertParams.py -v --type="stratum" --name="grass" --parentName="None" --user="RHESSys" defs/stratum/veg_grass.def
+./insertParams.py -v --type="stratum" --name="nonveg" --parentName="None" --user="RHESSys" defs/stratum/veg_nonveg.def
 ./insertParams.py -v --type="stratum" --name="deciduous_BES" --parentName="deciduous" --location="Baltimore Ecosystem Study" --user="RHESSys" defs/stratum/veg_deciduous_BES.def
 ./insertParams.py -v --type="stratum" --name="lawn_10cm" --parentName="grass" --user="RHESSys" defs/stratum/veg_lawn_10cm.def
 ./insertParams.py -v --type="stratum" --name="lawn_5cm" --parentName="grass" --user="RHESSys" defs/stratum/veg_lawn_5cm.def
