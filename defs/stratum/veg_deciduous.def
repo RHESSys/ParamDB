@@ -25,7 +25,7 @@ TREE	   epc.veg.type
 0.000000	  epc.vpd_open
 3600.000000	  epc.vpd_close
 0.006000	  epc.gl_smax
-0.006000	  epc.gl_c
+0.000060	  epc.gl_c
 0.000000	  gsurf_slope
 1000000.000000	  gsurf_intercept
 static	  epc.phenology_flag
