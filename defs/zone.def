@@ -9,7 +9,6 @@
 0.003      trans_coeff1
 2.2        trans_coeff2
 1          wind
--6         max_snow_temp
--8         min_rain_temp
+1	       max_snow_temp
+-1         min_rain_temp
 0.001      n_deposition
-
