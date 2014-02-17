@@ -35,7 +35,7 @@ _world $world_rast 1
 			default_ID  	dvalue 1
 			a_area		area	
 			slope		aver $slope_rast
-			aspect		spavg $aspect_rast $slope_rast
+			aspect		spavg $aspect_rast $aspect_slope_rast
 			isohyet		eqn 0.01 0.0 $isohyet_rast 
 			east_horizon    eqn 0.001 0.0  $east_horizon_rast	
 			west_horizon    eqn 0.001 0.0  $west_horizon_rast	
