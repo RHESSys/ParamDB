@@ -16,14 +16,14 @@ _world $world_rast 1
  _basin $basin_rast 1
 	x			aver $xmap_rast
 	y			aver $ymap_rast
-	z			aver $dem_rast
+	z			eqn 0.001 0.0 $dem_rast
 	default_ID		dvalue 1
 	latitude		value $latitude_float
 	n_basestations 	dvalue 0	
   	_hillslope $hillslope_rast 1
 		x			aver $xmap_rast
 		y			aver $ymap_rast
-		z			aver $dem_rast
+		z			eqn 0.001 0.0 $dem_rast
 		default_ID		dvalue 1
 		gw_storage		value 0.0
 		gw_NO3			value 0.0
@@ -31,11 +31,11 @@ _world $world_rast 1
 		_zone $zone_rast 1 
 			x			aver $xmap_rast
 			y			aver $ymap_rast
-			z			aver $dem_rast
+			z			eqn 0.001 0.0 $dem_rast
 			default_ID  	dvalue 1
 			a_area		area	
 			slope		aver $slope_rast
-			aspect		spavg $aspect_rast $aspect_slope_rast
+			aspect		spavg $aspect_rast $slope_rast
 			isohyet		eqn 0.01 0.0 $isohyet_rast 
 			east_horizon    eqn 0.001 0.0  $east_horizon_rast	
 			west_horizon    eqn 0.001 0.0  $west_horizon_rast	
@@ -44,7 +44,7 @@ _world $world_rast 1
 			 _patch $patch_rast 1
 				x			aver $xmap_rast
 				y			aver $ymap_rast
-				z			aver $dem_rast
+				z			eqn 0.001 0.0 $dem_rast
 				soil_default		mode $soil_rast 
 				landuse_default	mode $landuse_rast
 				a_area		area	
