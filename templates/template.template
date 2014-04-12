@@ -76,8 +76,8 @@ _world $world_rast 1
 				n_basestations	dvalue 0
 				_stratum $patch_rast 1	
 					default_ID		mode $stratum_rast
-					cover_fraction		value 1.0   
-					gap_fraction		value 0.0
+					cover_fraction	value 1.0
+					gap_fraction	eqn 1 0 $impervious_rast
 					root_depth		value 1.0
 					snow_stored		value 0.00 
 					rain_stored		value 0.00  
