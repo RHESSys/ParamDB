@@ -21,7 +21,7 @@ sqlite3 unittests/empty_params.sqlite < createParamDB.sql
 # Insert params for the soil base classes
 ./insertParams.py -v --type="soil" --name="clay" --parentName="None" --user="RHESSys" defs/soil/soil_clay.def
 ./insertParams.py -v --type="soil" --name="silt-clay" --parentName="None" --user="RHESSys" defs/soil/soil_siltyclay.def
-./insertParams.py -v --type="soil" --name="silt-clay-loam" --parentName="None" --user="RHESSys" defs/soil/soil_siltyclayloam.def
+./insertParams.py -v --type="soil" --name="silty-clay-loam" --parentName="None" --user="RHESSys" defs/soil/soil_siltyclayloam.def
 ./insertParams.py -v --type="soil" --name="sandy-clay" --parentName="None" --user="RHESSys" defs/soil/soil_sandyclay.def
 ./insertParams.py -v --type="soil" --name="sandy-clay-loam" --parentName="None" --user="RHESSys" defs/soil/soil_sandyclayloam.def
 ./insertParams.py -v --type="soil" --name="clay-loam" --parentName="None" --user="RHESSys" defs/soil/soil_clayloam.def
