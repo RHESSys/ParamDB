@@ -19,9 +19,9 @@
 0.010000 psi_max
 0.340000 sand
 0.330000 silt
-0.000000 snow_light_ext_coef
-10000.000000 snow_melt_Tcoef
--10.000000 snow_water_capacity
+10000.000000 snow_light_ext_coef
+0.050000 snow_melt_Tcoef
+0.000000 snow_water_capacity
 10.000000 soil_depth
 1 theta_psi_curve
 1.000000 sat_to_gw_coeff
