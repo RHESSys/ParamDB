@@ -15,13 +15,13 @@ TREE	   epc.veg.type
 0.210000	  mrc.per_N
 0.200000	  epc.gr_perc
 1.000000	  lai_stomatal_fraction
-0.100000	  epc.flnr
+0.036300	  epc.flnr	Zaehle et al. 2014 (CLM broadleaf)
 0.030000	  epc.ppfd_coef
 15.000000	  epc.topt
 40.000000	  epc.tmax
 0.200000	  epc.tcoef
--1.000000	  epc.psi_open
--3.000000	  epc.psi_close
+-1.000000	  epc.psi_open	Leuning 1990
+-3.000000	  epc.psi_close	Leuning 1990
 0.000000	  epc.vpd_open
 3500.000000	  epc.vpd_close
 0.006000	  epc.gl_smax
@@ -31,7 +31,7 @@ TREE	   epc.veg.type
 static	  epc.phenology_flag
 EVERGREEN	  epc.phenology.type
 20.000000	  epc.max_lai
-9.000000	  epc.proj_sla
+8.740000	  epc.proj_sla	Zaehle et al. 2014 (CLM broadleaf)
 2.000000	  epc.lai_ratio
 1.400000	  epc.proj_swa
 0.270000	  epc.leaf_turnover
@@ -39,8 +39,8 @@ EVERGREEN	  epc.phenology.type
 125.000000	  epc.day_leafoff
 30.000000	  epc.ndays_expand
 30.000000	  epc.ndays_litfall
-45.000000	  epc.leaf_cn
-70.000000	  epc.leaflitr_cn
+28.700000	  epc.leaf_cn	Zaehle et al. 2014 (CLM broadleaf)
+66.300000	  epc.leaflitr_cn	Zaehle et al. 2014 (CLM broadleaf)
 0.000000	  min_heat_capacity
 0.000000	  max_heat_capacity
 waring	  epc.allocation_flag
@@ -54,14 +54,14 @@ waring	  epc.allocation_flag
 0.310000	  epc.leaflitr_flab
 0.450000	  epc.leaflitr_fcel
 0.240000	  epc.leaflitr_flig
-0.230000	  epc.frootlitr_flab
-0.410000	  epc.frootlitr_fcel
-0.360000	  epc.frootlitr_flig
+0.250000	  epc.frootlitr_flab	Zaehle et al. 2014 (CLM broadleaf)
+0.500000	  epc.frootlitr_fcel	Zaehle et al. 2014 (CLM broadleaf)
+0.250000	  epc.frootlitr_flig	Zaehle et al. 2014 (CLM broadleaf)
 0.520000	  epc.deadwood_fcel
 0.480000	  epc.deadwood_flig
 1.325000	  epc.alloc_frootc_leafc
 0.300000	  epc.alloc_crootc_stemc
-1.620000	  epc.alloc_stemc_leafc
+1.300000	  epc.alloc_stemc_leafc	Zaehle et al. 2014 (CLM broadleaf)
 0.073000	  epc.alloc_livewoodc_woodc
 0.050000	  epc.maxlgf
 0.500000	  epc.alloc_prop_day_growth
