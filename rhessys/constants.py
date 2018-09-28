@@ -1,4 +1,6 @@
 PARAM_DB_FILENAME = "params.sqlite"
+# This lists of valid types should really be fetched from the 'class_type' table in the db,
+# in case new types are added in the future.
 VALID_TYPES = ("basin", "fire", "hillslope", "landuse", "soil", "stratum", "surface_energy", "zone")
 VALID_FORMATS = ('csv', 'param')
 OUTPUT_FORMAT_CSV = 'csv'

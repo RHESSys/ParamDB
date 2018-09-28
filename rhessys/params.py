@@ -322,7 +322,7 @@ def overlayResultSet(paramResult, overlayResult):
     overlayInd = 0
     paramLen = len(paramResult)
     overlayLen = len(overlayResult)
-  
+    
     while (paramInd < paramLen or overlayInd < overlayLen):
         # Reached the end of the 1st resultSet so continue outputting overlay result
         if (paramInd == paramLen):
@@ -559,6 +559,7 @@ def readParamFile(filename):
     params = []
 
     for line in fp:
+        skipDefaultID = False
         if (line.strip() == ""):
             continue
         m = paramFileRegex.match(line)
@@ -570,8 +571,14 @@ def readParamFile(filename):
         # maintained by the Python parameter database software.
         for vt in rpc.VALID_TYPES:
             if (paramName.lower() == "%s_default_id" % vt):
-               continue
+               skipDefaultID = True
+               # Break out of this inner loopg
+               break
 
+        # If a *_default_ID param is encountered, skip inserting it.
+        if (skipDefaultID):
+            continue
+        
         if (len(m.groups()) > 2 and m.groups()[2].strip() != ""):
            paramRef = m.groups()[2].lstrip().replace('\r', '')
         else:
@@ -619,7 +626,7 @@ class paramDB:
     def searchHierarchical(self, classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses=False):
 
         self.searchResultType = "param"
-
+        
         # fetch the classId of the requested class
         requestedClass = fetchClass(self.conn, None, None, className, location, None, None)
         if (len(requestedClass) == 0):
@@ -678,13 +685,13 @@ class paramDB:
         if (self.requestedClassId != None):
             currentDatetimeStr = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             finalParams.append([self.requestedClassId, "%s_default_ID" % self.requestedClassType.strip().lower(), self.requestedClassDefaultId, currentDatetimeStr, "", "", ""])
-
+            
         return finalParams
 
     def searchConstrained(self, classType, className, location, param, genus, species, user, startDatetimeStr, endDatetimeStr, reference, limitToBaseClasses=False, defaultIdOverride=None):
 
         self.searchResultType = "param"
-
+        
         # fetch the classId of the requested class
         if (className != None):
             requestedClass = fetchClass(self.conn, None, None, className, location, None, None)[0]
