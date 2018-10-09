@@ -2,7 +2,8 @@
 
 #./searchParams.py -v --searchType=hierarchical --name="deciduous" --format=csv
 #./searchParams.py -v --searchType=hierarchical --name="Deciduous" --format=param
-#./searchParams.py -v --searchType=hierarchical --name="deciduous" --format=param --output=my-deciduous.def
+./searchParams.py -v --searchType=hierarchical --name="deciduous" --format=param --output=my-deciduous.def
+#./searchParams.py -v --searchType=hierarchical --name="sand" --format=param --output=sand.def
 
 #./searchParams.py -v --searchType=hierarchical --name="grass" --format=csv
 #./searchParams.py -v --searchType=hierarchical --name="grass" --format=param
@@ -18,7 +19,7 @@
 
 #./searchParams.py -v --searchType=hierarchical --name="douglas fir" --format=csv
 #./searchParams.py -v --searchType=hierarchical --name="douglas fir" --location="Oregon" --format=csv
-./searchParams.py -v --searchType=hierarchical --name="douglas fir" --location="New Mexico" --format=csv
+#./searchParams.py -v --searchType=hierarchical --name="douglas fir" --location="New Mexico" --format=csv
 
 #./searchParams.py -v --searchType=constrained --location="Oregon" --format=csv
 #./searchParams.py -v --searchType=constrained --genus="Alnus" --format=csv
