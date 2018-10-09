@@ -3,6 +3,7 @@
 #./searchParams.py -v --searchType=hierarchical --name="deciduous" --format=csv
 #./searchParams.py -v --searchType=hierarchical --name="Deciduous" --format=param
 ./searchParams.py -v --searchType=hierarchical --name="deciduous" --format=param --output=my-deciduous.def
+#./searchParams.py -v --searchType=hierarchical --name="sand" --format=param --output=sand.def
 
 #./searchParams.py -v --searchType=hierarchical --name="grass" --format=csv
 #./searchParams.py -v --searchType=hierarchical --name="grass" --format=param
